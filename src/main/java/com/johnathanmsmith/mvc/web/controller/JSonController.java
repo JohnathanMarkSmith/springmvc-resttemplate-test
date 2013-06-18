@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-
 @RequestMapping("/api")
 class JSonController
 {
