@@ -73,7 +73,7 @@ You can see from the client code below is that we are using Spring RESTTemaple a
              *
              */
             Map<String, String> vars = new HashMap<String, String>();
-            vars.put("name", "JohnathanMarkSmith");
+            vars.put("id", "JS01");
 
 
 
@@ -98,15 +98,14 @@ You can see from the client code below is that we are using Spring RESTTemaple a
                 rt.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
                 rt.getMessageConverters().add(new StringHttpMessageConverter());
 
-                URI uri = new URI("http://" + mRESTServer.getHost() + ":8080/springmvc-resttemplate-test/api/JMS");
+                String uri = new String("http://" + mRESTServer.getHost() + ":8080/springmvc-resttemplate-test/api/{id}");
 
                 User u = new User();
                 u.setName("Johnathan M Smith");
-                u.setUser("JMS");
+                u.setUser("JS01");
 
 
-                User returns = rt.postForObject(uri, u, User.class);
-
+                User returns = rt.postForObject(uri, u, User.class, vars);
                 LOGGER.debug("User:  " + u.toString());
 
             }

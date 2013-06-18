@@ -15,7 +15,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,18 +58,13 @@ public class Main
          *
          */
         Map<String, String> vars = new HashMap<String, String>();
-        vars.put("name", "JohnathanMarkSmith");
-
-
-
+        vars.put("id", "INID");
 
         /**
          *
          * Doing the REST call and then displaying the data/user object
          *
          */
-
-
         try
         {
 
@@ -84,14 +78,14 @@ public class Main
             rt.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
             rt.getMessageConverters().add(new StringHttpMessageConverter());
 
-            URI uri = new URI("http://" + mRESTServer.getHost() + ":8080/springmvc-resttemplate-test/api/JMS");
+            String uri = new String("http://" + mRESTServer.getHost() + ":8080/springmvc-resttemplate-test/api/{id}");
 
             User u = new User();
             u.setName("Johnathan M Smith");
             u.setUser("JMS");
 
 
-            User returns = rt.postForObject(uri, u, User.class);
+            User returns = rt.postForObject(uri, u, User.class, vars);
 
             LOGGER.debug("User:  " + u.toString());
 
